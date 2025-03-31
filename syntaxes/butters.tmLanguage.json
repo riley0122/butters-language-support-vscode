@@ -1,0 +1,261 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Butters",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#section-tag"
+    },
+    {
+      "include": "#section-header"
+    },
+    {
+      "include": "#meta-definitions"
+    },
+    {
+      "include": "#imports"
+    },
+    {
+      "include": "#variable-definitions"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#control-flow"
+    },
+    {
+      "include": "#output-command"
+    },
+    {
+      "include": "#cvar-command"
+    },
+    {
+      "include": "#input-command"
+    },
+    {
+      "include": "#variable-references"
+    }
+  ],
+  "repository": {
+    "section-tag": {
+      "match": "(#section)",
+      "name": "keyword.control.section.butters"
+    },
+    "section-header": {
+      "match": "(?<=#section\\s+)([A-Z]+)",
+      "name": "entity.name.section.butters"
+    },
+    "meta-definitions": {
+      "match": "(\\*)(author|project|version|license)(\\s+)([^\\n]+)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.meta.butters"
+        },
+        "2": {
+          "name": "keyword.other.meta.butters"
+        },
+        "3": {
+          "name": "punctuation.separator.key-value.butters"
+        },
+        "4": {
+          "name": "string.unquoted.meta-value.butters"
+        }
+      }
+    },
+    "imports": {
+      "match": "(import)\\s+([^\\n]+)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.import.butters"
+        },
+        "2": {
+          "name": "entity.name.module.butters"
+        }
+      }
+    },
+    "variable-definitions": {
+      "patterns": [
+        {
+          "match": "(float|int|string|bool|\\.float|\\.int|\\.string)\\s+(\\w+)\\s+([^\\n]+)?",
+          "captures": {
+            "1": {
+              "name": "storage.type.butters"
+            },
+            "2": {
+              "name": "variable.other.declaration.butters"
+            },
+            "3": {
+              "name": "string.unquoted.butters"
+            }
+          }
+        },
+        {
+          "match": "(float|int|string|bool|\\.float|\\.int|\\.string)\\s+(\\w+)\\s*$",
+          "captures": {
+            "1": {
+              "name": "storage.type.butters"
+            },
+            "2": {
+              "name": "variable.other.declaration.butters"
+            }
+          }
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "(void|function)\\s+(\\w+)",
+          "captures": {
+            "1": {
+              "name": "storage.type.function.butters"
+            },
+            "2": {
+              "name": "entity.name.function.declaration.butters"
+            }
+          }
+        },
+        {
+          "match": "(call)\\s+(\\w+)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.call.butters"
+            },
+            "2": {
+              "name": "entity.name.function.butters"
+            }
+          }
+        },
+        {
+          "match": "(return)",
+          "name": "keyword.control.return.butters"
+        }
+      ]
+    },
+    "control-flow": {
+      "patterns": [
+        {
+          "match": "(while|for|if)\\s+([^\\n]+)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.flow.butters"
+            },
+            "2": {
+              "name": "meta.condition.butters"
+            }
+          }
+        },
+        {
+          "match": "\\$(?!out)",
+          "name": "keyword.control.block.butters"
+        },
+        {
+          "match": "%(?!-)",
+          "name": "keyword.control.block.end.butters"
+        },
+        {
+          "match": "\\^(\\w+)",
+          "captures": {
+            "1": {
+              "name": "variable.other.increment.butters"
+            }
+          }
+        }
+      ]
+    },
+    "variable-references": {
+      "match": "(\\s)(_)(\\w+)",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.butters"
+        },
+        "2": {
+          "name": "keyword.operator.butters"
+        },
+        "3": {
+          "name": "variable.other.reference.butters"
+        }
+      }
+    },
+    "cvar-command": {
+      "match": "(cvar)\\s+(\\w+)\\s+(/)\\s*(.+)",
+      "captures": {
+        "1": {
+          "name": "keyword.other.cvar.butters"
+        },
+        "2": {
+          "name": "variable.other.butters"
+        },
+        "3": {
+          "name": "punctuation.separator.parameter.butters"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#variable-references"
+            },
+            {
+              "match": ".",
+              "name": "string.unquoted.butters"
+            }
+          ]
+        }
+      }
+    },
+    "output-command": {
+      "match": "(\\$out|out)\\s+(\\w+)",
+      "captures": {
+        "1": {
+          "name": "keyword.other.output.butters"
+        },
+        "2": {
+          "name": "variable.other.butters"
+        }
+      }
+    },
+    "input-command": {
+      "match": "(input)\\s+([^\\s]+)\\s+(\\w+)",
+      "captures": {
+        "1": {
+          "name": "keyword.other.input.butters"
+        },
+        "2": {
+          "name": "string.unquoted.prompt.butters"
+        },
+        "3": {
+          "name": "variable.other.butters"
+        }
+      }
+    },
+    "comments": {
+      "patterns": [
+        {
+          "match": "--([^\\n]*)",
+          "name": "comment.line.double-dash.butters"
+        },
+        {
+          "begin": "-%(.*)",
+          "end": "%-",
+          "name": "comment.block.butters",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.begin.butters"
+            },
+            "1": {
+              "name": "comment.line.butters"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.end.butters"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.butters"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "butters-language-support",
+  "displayName": "Butters Language Support",
+  "description": "Support for the Butters programming language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "butters",
+      "aliases": ["Butters", "butters"],
+      "extensions": [".btrs"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "butters",
+      "scopeName": "source.butters",
+      "path": "./syntaxes/butters.tmLanguage.json"
+    }]
+  }
+}
