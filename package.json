@@ -21,5 +21,6 @@
       "scopeName": "source.butters",
       "path": "./syntaxes/butters.tmLanguage.json"
     }]
-  }
+  },
+  "repository": "https://github.com/riley0122/butters-language-support-vscode.git"
 }
